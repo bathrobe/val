@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+
+    // More lenient options
+    "strict": false, // Disables all strict type checking
+    "noImplicitAny": false, // Allows parameters/variables with implicit 'any' type
+    "strictNullChecks": false, // More relaxed null/undefined handling
+    "allowJs": true, // Allows JavaScript files to be compiled
+    "resolveJsonModule": true, // Enables importing JSON files
+    "noUnusedLocals": false, // Won't error on unused variables
+    "noUnusedParameters": false // Won't error on unused parameters
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}

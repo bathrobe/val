@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+dist/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+
+# Twitter cookies
+twitter-cookies.json
