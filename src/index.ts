@@ -2,8 +2,24 @@ import { initializeTwitter } from "./platforms/twitter/initialize";
 import { setTwitter } from "./platforms/twitter/store";
 import { createRuntime } from "./core/runtime";
 import { config } from "./config";
+import { decide } from "./core/decision";
+import { executeAction } from "./core/actions";
 
 const log = (...args: any[]) => config.VERBOSE && console.log(...args);
+
+// Debug/test function
+// --------MODIFY THIS TO TEST FEATURES------------------
+const triggerTest = async () => {
+  // Example: Test decision + action pipeline
+  const message = await decide();
+  console.log("Test generated:", message);
+
+  if (!config.TEST_MODE) {
+    await executeAction(message);
+    console.log("Action executed!");
+  }
+};
+// --------------------------------------------------------
 
 const main = async () => {
   try {
@@ -11,12 +27,13 @@ const main = async () => {
     const twitter = await initializeTwitter();
     setTwitter(twitter);
 
-    if (config.TEST_MODE) {
-      console.log(
-        "Running in test mode - actions will be logged but not executed"
-      );
+    // Check for --trigger flag
+    if (process.argv.includes("--trigger")) {
+      await triggerTest();
+      process.exit(0);
     }
 
+    // Normal runtime continues here
     const runtime = createRuntime();
     await runtime.start();
 

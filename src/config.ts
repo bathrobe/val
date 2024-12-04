@@ -1,10 +1,9 @@
 import dotenv from "dotenv";
 import path from "path";
+import { environments, Environment } from "./environments";
 
 // Load environment variables
-const envFile =
-  process.env.NODE_ENV === "development" ? ".env.development" : ".env";
-dotenv.config({ path: path.resolve(process.cwd(), envFile) });
+dotenv.config();
 
 // Validate required env vars
 const requireEnvVar = (name: string): string => {
@@ -15,22 +14,22 @@ const requireEnvVar = (name: string): string => {
   return value;
 };
 
-// Parse command line arguments
-const args = process.argv.slice(2);
+const env = (process.env.NODE_ENV || "development") as Environment;
+const envConfig = environments[env];
 
 export const config = {
-  // Runtime modes
-  TEST_MODE: args.includes("--test"),
-  VERBOSE: args.includes("--verbose"),
-  NODE_ENV: process.env.NODE_ENV || "development",
+  // Environment-specific settings
+  TEST_MODE: envConfig.TEST_MODE,
+  VERBOSE: envConfig.VERBOSE,
+  NODE_ENV: env,
 
-  // Runtime configuration
+  // Runtime settings from environment config
   runtime: {
-    baseInterval: parseInt(process.env.POSTING_INTERVAL || "1800000"), // 30 minutes
-    jitter: 300000, // 5 minutes
+    baseInterval: envConfig.baseInterval,
+    jitter: envConfig.jitter,
     sleepStart: parseInt(process.env.SLEEP_START_HOUR || "1"),
     sleepEnd: parseInt(process.env.SLEEP_END_HOUR || "5"),
-    retryDelay: 60000, // 1 minute
+    retryDelay: 60000,
   },
 
   // Twitter configuration
@@ -38,13 +37,15 @@ export const config = {
     username: requireEnvVar("TWITTER_USERNAME"),
     password: requireEnvVar("TWITTER_PASSWORD"),
     email: requireEnvVar("TWITTER_EMAIL"),
+    cookiePath: path.join(process.cwd(), requireEnvVar("TWITTER_COOKIE_PATH")),
   },
 
   // Service configuration
   services: {
     llm: {
-      //   url: requireEnvVar("MODEL_URL"),
-      //   apiKey: requireEnvVar("DEEPINFRA_API_KEY"),
+      anthropic: {
+        apiKey: requireEnvVar("ANTHROPIC_API_KEY"),
+      },
     },
   },
 } as const;

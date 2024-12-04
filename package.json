@@ -6,12 +6,13 @@
   "scripts": {
     "build": "tsc",
     "start": "ts-node src/index.ts",
-    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
-    "dev:test": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts -- --test",
-    "dev:verbose": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts -- --verbose",
-    "typecheck": "tsc --noEmit"
+    "dev": "nodemon",
+    "staging": "NODE_ENV=staging ts-node src/index.ts",
+    "prod": "NODE_ENV=production ts-node src/index.ts",
+    "trigger": "NODE_ENV=development ts-node src/index.ts --trigger"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.1",
     "dotenv": "^16.4.5",
     "goat-x": "^1.1.0",
     "tough-cookie": "^4.1.2"

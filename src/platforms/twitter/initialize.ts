@@ -1,20 +1,18 @@
 import { Scraper } from "goat-x";
 import { Cookie } from "tough-cookie";
 import fs from "fs/promises";
-import path from "path";
-
-const COOKIE_PATH = path.join(process.cwd(), "twitter-cookies.json");
+import { config } from "../../config";
 
 async function loadStoredCookies(): Promise<Cookie[] | null> {
   try {
     const fileExists = await fs
-      .access(COOKIE_PATH)
+      .access(config.twitter.cookiePath)
       .then(() => true)
       .catch(() => false);
 
     if (!fileExists) return null;
 
-    const cookiesJson = await fs.readFile(COOKIE_PATH, "utf-8");
+    const cookiesJson = await fs.readFile(config.twitter.cookiePath, "utf-8");
     const cookiesData = JSON.parse(cookiesJson);
 
     return cookiesData
@@ -28,7 +26,10 @@ async function loadStoredCookies(): Promise<Cookie[] | null> {
 
 async function storeCookies(cookies: Cookie[]): Promise<void> {
   try {
-    await fs.writeFile(COOKIE_PATH, JSON.stringify(cookies, null, 2));
+    await fs.writeFile(
+      config.twitter.cookiePath,
+      JSON.stringify(cookies, null, 2)
+    );
   } catch (error) {
     console.error("Error storing cookies:", error);
   }

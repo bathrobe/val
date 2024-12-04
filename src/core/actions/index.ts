@@ -1,12 +1,15 @@
 import { createTweet } from "../../platforms/twitter/post";
+import { composeMessage } from "./compose";
 
-export const executeAction = async (message: any) => {
-  switch (message.type) {
+export const executeAction = async (messageType: string) => {
+  switch (messageType) {
     case "tweet":
-      await createTweet(message.content);
+      const message = await composeMessage();
+      console.log("executing tweet action:", message);
+      // await createTweet(message);
       break;
     // Add more cases for other message types
     default:
-      console.log("No action for message type:", message.type);
+      console.log("No action for message type:", messageType);
   }
 };

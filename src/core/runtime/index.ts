@@ -1,4 +1,4 @@
-import { decideMessage } from "../decision";
+import { decide } from "../decision";
 import { executeAction } from "../actions";
 import { config } from "../../config";
 import { isAwakeHour, getNextAwakeTime } from "./sleep";
@@ -34,20 +34,16 @@ export const createRuntime = () => {
         const interval = getNextInterval();
 
         if (timeSinceLastAction < interval) {
-          await new Promise((r) =>
-            setTimeout(r, interval - timeSinceLastAction)
-          );
+          const waitTime = interval - timeSinceLastAction;
+          log(`Waiting ${Math.round(waitTime / 1000)}s until next action`);
+          await new Promise((r) => setTimeout(r, waitTime));
           continue;
         }
 
-        const message = await decideMessage();
+        const messageType = await decide();
+        log("Decided message type:", messageType);
+        await executeAction(messageType);
 
-        if (config.TEST_MODE) {
-          log("Would execute:", message);
-          continue;
-        }
-
-        await executeAction(message);
         lastActionTime = Date.now();
       } catch (error) {
         log("Error in runtime loop:", error);

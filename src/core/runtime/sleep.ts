@@ -1,21 +1,19 @@
 import { config } from "../../config";
 
 export const isAwakeHour = (): boolean => {
-  const now = new Date();
-  const estHour = (now.getUTCHours() - 5 + 24) % 24; // Convert UTC to EST
-
-  const isAsleep =
-    estHour >= config.runtime.sleepStart && estHour < config.runtime.sleepEnd;
-  const isAwake = !isAsleep;
-
-  console.log(`Current EST hour: ${estHour}`);
-  console.log(
-    `Sleep window: ${config.runtime.sleepStart}:00 to ${config.runtime.sleepEnd}:00`
-  );
-  console.log(`Is awake? ${isAwake}`);
-
+  const hour = new Date().getHours();
+  const isAwake = hour < 1 || hour >= 5;
+  // Only log on state changes to reduce spam
+  if (isAwake !== lastAwakeState) {
+    console.log(
+      `Sleep window: 1:00 to 5:00\nIs awake? ${isAwake}\nCurrent EST hour: ${hour}`
+    );
+    lastAwakeState = isAwake;
+  }
   return isAwake;
 };
+
+let lastAwakeState: boolean | null = null;
 
 export const getNextAwakeTime = (): Date => {
   const now = new Date();
