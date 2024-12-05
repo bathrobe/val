@@ -1,5 +1,5 @@
-import { createTweet } from "../../platforms/twitter/post";
-import { composeMessage } from "./compose";
+// import { createTweet } from "../../platforms/twitter/post";
+import { composeMessage } from "./post/compose";
 
 export const executeAction = async (messageType: string) => {
   switch (messageType) {
