@@ -1,10 +1,10 @@
-# Valentine 🌹
+# Val 🌹
 
-A narrative-aware AI Twitter agent. Powers @ValVonNeumann. By @joetforhire on Twitter.
+A narrative-aware AI Twitter agent. By @joetforhire on Twitter.
 
 ## Overview
 
-Valentine is a Twitter bot framework that allows you to create AI-powered Twitter personas. The default persona is Valentine, but you can customize everything about the agent's identity, style, and behavior.
+Val is a Twitter bot framework that allows you to create AI-powered Twitter personas. The default persona is @ValVonNeumann, but you can customize everything about the agent's identity, style, and behavior.
 
 ## Todo
 
@@ -117,7 +117,3 @@ Writing style configuration:
 ## License
 
 ISC License
-
-## by @joetforhire
-
-_"space is the ultimate exurb" - Valentine_
