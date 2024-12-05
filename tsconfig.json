@@ -17,6 +17,6 @@
     "noUnusedLocals": false, // Won't error on unused variables
     "noUnusedParameters": false // Won't error on unused parameters
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "src/db"],
   "exclude": ["node_modules"]
 }

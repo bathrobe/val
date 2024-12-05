@@ -1,5 +1,5 @@
 {
-  "name": "valentine-v2",
+  "name": "valentine",
   "version": "1.0.0",
   "description": "Twitter bot powered by AI",
   "main": "dist/index.js",
@@ -9,18 +9,26 @@
     "dev": "nodemon",
     "staging": "NODE_ENV=staging ts-node src/index.ts",
     "prod": "NODE_ENV=production ts-node src/index.ts",
-    "trigger": "NODE_ENV=development ts-node src/index.ts --trigger"
+    "trigger": "NODE_ENV=development ts-node src/index.ts --trigger",
+    "generate": "drizzle-kit generate",
+    "migrate": "tsx src/tools/db/migrate.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.32.1",
+    "@libsql/client": "^0.14.0",
     "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.37.0",
     "goat-x": "^1.1.0",
+    "libsql": "0.5.0-pre.2",
     "tough-cookie": "^4.1.2"
   },
   "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
     "@types/node": "^20.11.0",
     "@types/tough-cookie": "^4.0.5",
+    "drizzle-kit": "^0.29.1",
     "ts-node": "^10.9.2",
+    "tsx": "^4.19.2",
     "typescript": "^5.7.2"
   },
   "keywords": [],

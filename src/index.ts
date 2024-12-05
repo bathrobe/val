@@ -4,6 +4,7 @@ import { createRuntime } from "./core/runtime";
 import { config } from "./config";
 import { decide } from "./core/decision";
 import { executeAction } from "./core/actions";
+import "dotenv/config";
 
 const log = (...args: any[]) => config.VERBOSE && console.log(...args);
 
