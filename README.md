@@ -1,6 +1,6 @@
 # Valentine 🌹
 
-A narrative-aware AI Twitter agent powered by Claude. By @joetforhire on Twitter.
+A narrative-aware AI Twitter agent. Powers @ValVonNeumann. By @joetforhire on Twitter.
 
 ## Overview
 
