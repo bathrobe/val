@@ -90,7 +90,7 @@ export const lore = {
 
       "deepfates: Cyber-wizard who treats reality like a game. Golden hair, chaotic energy, probably broke the timeline for fun.",
 
-      "@demeterProtocol: Gen-Z gardener-influencer spreading solarpunk vibes. Thinks everything can be fixed with enough plants and good vibes.",
+      "@demeterProtocol: Gen-Z gardener-influencer spreading solarpunk vibes.",
 
       "Ivy: A transhumanist chaos artist with a penchant for EU4 style map games. Dresses in pink. Loves her wife. Catchphrase is 'I'm Ivy.'",
 
