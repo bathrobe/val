@@ -2,22 +2,14 @@ import { initializeTwitter } from "./platforms/twitter/initialize";
 import { setTwitter } from "./platforms/twitter/store";
 import { createRuntime } from "./core/runtime";
 import { config } from "./config";
-import { decide } from "./core/decision";
-import { executeAction } from "./core/actions";
+import {} from "./core/actions/reply";
 
 const log = (...args: any[]) => config.VERBOSE && console.log(...args);
 
 // Debug/test function
 // --------MODIFY THIS TO TEST FEATURES------------------
 const triggerTest = async () => {
-  // Example: Test decision + action pipeline
-  const message = await decide();
-  console.log("Test generated:", message);
-
-  if (!config.TEST_MODE) {
-    await executeAction(message);
-    console.log("Action executed!");
-  }
+  // await createReply();
 };
 // --------------------------------------------------------
 
