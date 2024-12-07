@@ -3,7 +3,12 @@ import { replyTemplate } from "../../../prompts/templates/reply";
 import { complete } from "../../../tools/llm";
 
 export const generateReplies = async (replies: Tweet[]) => {
-  return Promise.all(replies.map(generateSingleReply));
+  try {
+    return await Promise.all(replies.map(generateSingleReply));
+  } catch (error) {
+    console.error("Error generating replies:", error);
+    return [];
+  }
 };
 
 const generateSingleReply = async (reply: Tweet) => {

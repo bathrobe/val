@@ -7,7 +7,7 @@ export const environments = {
   },
   production: {
     TEST_MODE: false,
-    VERBOSE: false,
+    VERBOSE: true,
     baseInterval: 1800000,
     jitter: 300000,
   },

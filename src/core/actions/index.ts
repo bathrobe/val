@@ -6,7 +6,9 @@ export const executeAction = async (messageType: string) => {
     case "tweetAndReply":
       try {
         await composeTweetAndSave();
+        console.log("tweet posted")
         await replyToMyPostsReplies();
+        console.log("replies replied to")
       } catch (error) {
         console.error("Error in tweetAndReply action:", error);
       }
