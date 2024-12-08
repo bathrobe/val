@@ -5,7 +5,7 @@ import { identity } from "../fragments/identity";
 import { getRandomElements } from "../../tools/utils/helpers";
 
 export const tweetTemplate = () => {
-  const examplePosts = getRandomElements(identity.examplePosts, 3);
+  const examplePosts = getRandomElements(identity.examplePosts, 2);
   return `<persona>${persona()}</persona>
 <task>${tasks.shitpost}</task>
 <style>${style()}</style>
