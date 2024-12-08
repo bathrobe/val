@@ -32,6 +32,11 @@ export const createRuntime = () => {
         const now = Date.now();
         const timeSinceLastAction = now - lastActionTime;
         const interval = getNextInterval();
+        log(
+          `Time since last action: ${Math.round(timeSinceLastAction / 1000)}s, Interval: ${Math.round(
+            interval / 1000
+          )}s`
+        );
 
         if (timeSinceLastAction < interval) {
           const waitTime = interval - timeSinceLastAction;
@@ -43,6 +48,10 @@ export const createRuntime = () => {
         const messageType = await decide();
         log("Decided message type:", messageType);
         await executeAction(messageType);
+        log("Action executed");
+        const nextActionIn = Math.round((interval - timeSinceLastAction) / 1000);
+        log(`Next action in: ${nextActionIn}s`);
+
 
         lastActionTime = Date.now();
       } catch (error) {
