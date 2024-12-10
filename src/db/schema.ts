@@ -12,3 +12,9 @@ export const postTable = sqliteTable("posts", {
   post: text("post").notNull(),
   createdAt: integer("created_at", { mode: "timestamp" }).notNull(),
 });
+
+export const personaState = sqliteTable("persona_state", {
+  id: text("id").primaryKey(),
+  state: text("state").notNull(), // Her current narrative state
+  updatedAt: integer("updated_at", { mode: "timestamp" }).notNull(),
+});

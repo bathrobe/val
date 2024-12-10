@@ -2,14 +2,13 @@ import { initializeTwitter } from "./platforms/twitter/initialize";
 import { setTwitter } from "./platforms/twitter/store";
 import { createRuntime } from "./core/runtime";
 import { config } from "./config";
-import {} from "./core/actions/reply";
 
 const log = (...args: any[]) => config.VERBOSE && console.log(...args);
 
 // Debug/test function
 // --------MODIFY THIS TO TEST FEATURES------------------
 const triggerTest = async () => {
-  // await createReply();
+  return "";
 };
 // --------------------------------------------------------
 
