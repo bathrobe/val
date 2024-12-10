@@ -2,5 +2,6 @@ import { getTwitter } from "./store";
 
 export const replyToTweet = async (tweetId: string, content: string) => {
   const twitter = getTwitter();
-  return await twitter.sendTweet(content, tweetId);
+  return;
+  // return await twitter.sendTweet(content, tweetId);
 };
