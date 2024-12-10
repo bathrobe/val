@@ -6,7 +6,7 @@ import { getRandomElements } from "../../tools/utils/helpers";
 
 export const tweetTemplate = () => {
   const examplePosts = getRandomElements(identity.examplePosts, 2);
-  const prompt = `<persona>${persona()}</persona>
+  const prompt = `<persona>${persona}</persona>
 <task>${tasks.shitpost}</task>
 <style>${style()}</style>
 <examplePosts>${examplePosts}</examplePosts>

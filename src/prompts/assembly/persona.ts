@@ -1,7 +1,7 @@
 import { identity } from "../fragments/identity";
 import { getRandomElements } from "../../tools/utils/helpers";
 
-export const persona = async () => {
+export const persona = () => {
   const bios = getRandomElements(identity.bios, 1);
   // const state = await identity.state();
   const state = getRandomElements(identity.state, 2);
