@@ -19,6 +19,7 @@
     "dotenv": "^16.4.6",
     "drizzle-orm": "^0.37.0",
     "goat-x": "^1.1.0",
+    "nodemon": "^3.1.9",
     "tough-cookie": "^4.1.2"
   },
   "devDependencies": {
