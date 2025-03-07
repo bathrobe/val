@@ -26,6 +26,6 @@ twitter_cookie.json
 
 *.db
 *.sqlite
+pnpm-workspace.yaml
 
 pnpm-lock.yaml
-pnpm-workspace.yaml
