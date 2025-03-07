@@ -26,3 +26,5 @@ twitter_cookie.json
 
 *.db
 *.sqlite
+
+pnpm-lock.yaml
