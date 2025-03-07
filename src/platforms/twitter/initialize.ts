@@ -36,27 +36,57 @@ async function storeCookies(cookies: Cookie[]): Promise<void> {
 }
 
 export const initializeTwitter = async () => {
-  const scraper = new Scraper();
+  try {
+    const scraper = new Scraper();
 
-  // Try loading cookies first
-  const cookies = await loadStoredCookies();
-  if (cookies) {
-    await scraper.setCookies(cookies);
-    if (await scraper.isLoggedIn()) {
-      return scraper;
+    // Try loading cookies first
+    try {
+      const cookies = await loadStoredCookies();
+      if (cookies) {
+        try {
+          await scraper.setCookies(cookies);
+          try {
+            if (await scraper.isLoggedIn()) {
+              return scraper;
+            }
+          } catch (error) {
+            console.error("Error checking login status:", error);
+          }
+        } catch (error) {
+          console.error("Error setting cookies:", error);
+        }
+      }
+    } catch (error) {
+      console.error("Error in cookie authentication flow:", error);
     }
+
+    // Fall back to login
+    try {
+      await scraper.login(
+        config.twitter.username,
+        config.twitter.password,
+        config.twitter.email
+      );
+    } catch (error) {
+      console.error("Error logging in to Twitter:", error);
+      throw error; // Re-throw as this is critical
+    }
+
+    // Store cookies for next time
+    try {
+      const newCookies = await scraper.getCookies();
+      try {
+        await storeCookies(newCookies);
+      } catch (error) {
+        console.error("Error storing new cookies:", error);
+      }
+    } catch (error) {
+      console.error("Error getting cookies after login:", error);
+    }
+
+    return scraper;
+  } catch (error) {
+    console.error("Fatal error initializing Twitter:", error);
+    throw error;
   }
-
-  // Fall back to login
-  await scraper.login(
-    process.env.TWITTER_USERNAME!,
-    process.env.TWITTER_PASSWORD!,
-    process.env.TWITTER_EMAIL
-  );
-
-  // Store cookies for next time
-  const newCookies = await scraper.getCookies();
-  await storeCookies(newCookies);
-
-  return scraper;
 };

@@ -1,51 +1,22 @@
 import dotenv from "dotenv";
-import path from "path";
-import { environments, Environment } from "./environments";
 
-// Load environment variables
 dotenv.config();
 
-// Validate required env vars
-const requireEnvVar = (name: string): string => {
-  const value = process.env[name];
-  if (!value) {
-    throw new Error(`Missing required environment variable: ${name}`);
-  }
-  return value;
-};
-
-const env = (process.env.NODE_ENV || "development") as Environment;
-const envConfig = environments[env];
-
 export const config = {
-  // Environment-specific settings
-  TEST_MODE: envConfig.TEST_MODE,
-  VERBOSE: envConfig.VERBOSE,
-  NODE_ENV: env,
-
-  // Runtime settings from environment config
   runtime: {
-    baseInterval: envConfig.baseInterval,
-    jitter: envConfig.jitter,
+    baseInterval: parseInt(process.env.BASE_INTERVAL || "1800000"), // 30 min default
+    jitter: parseInt(process.env.JITTER || "300000"), // 5 min default
     sleepStart: parseInt(process.env.SLEEP_START_HOUR || "1"),
     sleepEnd: parseInt(process.env.SLEEP_END_HOUR || "5"),
-    retryDelay: 60000,
   },
-
-  // Twitter configuration
   twitter: {
-    username: requireEnvVar("TWITTER_USERNAME"),
-    password: requireEnvVar("TWITTER_PASSWORD"),
-    email: requireEnvVar("TWITTER_EMAIL"),
-    cookiePath: path.join(process.cwd(), requireEnvVar("TWITTER_COOKIE_PATH")),
+    username: process.env.TWITTER_USERNAME || "",
+    password: process.env.TWITTER_PASSWORD || "",
+    email: process.env.TWITTER_EMAIL || "",
+    cookiePath: process.env.TWITTER_COOKIE_PATH || "./twitter_cookie.json",
   },
-
-  // Service configuration
-  services: {
-    llm: {
-      anthropic: {
-        apiKey: requireEnvVar("ANTHROPIC_API_KEY"),
-      },
-    },
-  },
-} as const;
+  shouldTweetLive: process.env.SHOULD_TWEET_LIVE === "true",
+  postingInterval: parseInt(process.env.POSTING_INTERVAL || "18000000"),
+  nodeEnv: process.env.NODE_ENV || "development",
+  anthropicApiKey: process.env.ANTHROPIC_API_KEY || "",
+};

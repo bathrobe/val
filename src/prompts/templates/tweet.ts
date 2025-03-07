@@ -1,14 +1,13 @@
 import { tasks } from "../fragments/tasks";
-import { persona } from "../assembly/persona";
-import { style } from "../assembly/style";
+import { persona, style } from "../assembly";
 import { identity } from "../fragments/identity";
-import { getRandomElements } from "../../tools/utils/helpers";
+import { getRandomElementsAndFormat } from "../../tools/utils/helpers";
 
 export const tweetTemplate = () => {
-  const examplePosts = getRandomElements(identity.examplePosts, 2);
+  const examplePosts = getRandomElementsAndFormat(identity.examplePosts, 2);
   const bio = persona();
   const prompt = `<persona>${bio}</persona>
-<task>${tasks.shitpost}</task>
+<task>${tasks.post}</task>
 <style>${style()}</style>
 <examplePosts>${examplePosts}</examplePosts>
 <tweet>:`;

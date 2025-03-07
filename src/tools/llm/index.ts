@@ -22,5 +22,10 @@ export const complete = async (
   prompt: string,
   config?: CompletionConfig
 ): Promise<CompletionResponse> => {
-  return provider.complete(prompt, config);
+  try {
+    return provider.complete(prompt, config);
+  } catch (error) {
+    console.error("Error completing prompt:", error);
+    throw error;
+  }
 };
