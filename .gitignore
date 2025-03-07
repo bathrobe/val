@@ -20,3 +20,9 @@ twitter-cookies.json
 
 # Twitter cookie path
 twitter_cookie.json
+
+*.pem
+*.key
+
+*.db
+*.sqlite
