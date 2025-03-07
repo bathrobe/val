@@ -28,3 +28,4 @@ twitter_cookie.json
 *.sqlite
 
 pnpm-lock.yaml
+pnpm-workspace.yaml
