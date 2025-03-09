@@ -5,7 +5,7 @@ import { config } from "../../../config";
 
 export const composeTweet = async () => {
   try {
-    const prompt = tweetTemplate();
+    const prompt = await tweetTemplate();
     const response = await complete(prompt, {
       temperature: 0.7,
       maxTokens: 300,

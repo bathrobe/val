@@ -3,6 +3,9 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const config = {
+  core: {
+    agentName: process.env.AGENT_NAME || "",
+  },
   runtime: {
     baseInterval: parseInt(process.env.BASE_INTERVAL || "1800000"), // 30 min default
     jitter: parseInt(process.env.JITTER || "300000"), // 5 min default

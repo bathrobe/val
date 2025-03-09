@@ -3,7 +3,7 @@ import { persona, style } from "../assembly";
 import { identity } from "../fragments/identity";
 import { getRandomElementsAndFormat } from "../../tools/utils/helpers";
 
-export const tweetTemplate = () => {
+export const tweetTemplate = async () => {
   const examplePosts = getRandomElementsAndFormat(identity.examplePosts, 2);
   const bio = persona();
   const prompt = `<persona>${bio}</persona>
@@ -11,6 +11,6 @@ export const tweetTemplate = () => {
 <style>${style()}</style>
 <examplePosts>${examplePosts}</examplePosts>
 <tweet>:`;
-  console.log(prompt);
+  // console.log(prompt);
   return prompt;
 };
