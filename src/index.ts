@@ -2,7 +2,6 @@ import { initializeTwitter } from "./platforms/twitter/initialize";
 import { setTwitter } from "./platforms/twitter/store";
 import { createRuntime } from "./core/runtime";
 
-
 const main = async () => {
   try {
     console.log("Initializing Twitter...");

@@ -3,7 +3,7 @@ import { config } from "../../../config";
 
 const defaultConfig: any = {
   model: "claude-3-5-sonnet-20241022",
-  temperature: 0.7,
+  temperature: 0.9,
   maxTokens: 1000,
 };
 

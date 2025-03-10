@@ -1,6 +1,8 @@
 // Simple fetch wrapper for Payload CMS API requests
 const BASE_URL =
-  process.env.NEXT_PUBLIC_PAYLOAD_API_URL || "http://localhost:3000/api";
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3000/api"
+    : process.env.NEXT_PUBLIC_PAYLOAD_API_URL || "http://localhost:3000/api";
 
 type FetchOptions = {
   method?: "GET" | "POST" | "PATCH" | "DELETE";
